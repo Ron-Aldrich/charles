@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHARLES | SOCMED</title>
+  <meta name="description" content="Personal portfolio and contact links for Your Name, a Software, Mobile and Web Developer.">
+
+  <!-- Google Fonts: Poppins (display) + Inter (body/UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient animated background: subtle constellation of dots, purely decorative -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- Skip link for keyboard / screen-reader users -->
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-label="Introduction">
+      <p class="hero__eyebrow fade-in" style="--delay: 0s">Hello, I'm</p>
+
+      <!-- Replace with your full name -->
+      <h1 class="hero__name fade-in" style="--delay: .1s">Charles Andrew Balberan</h1>
+
+      <!-- Subtitle -->
+      <p class="hero__subtitle fade-in" style="--delay: .2s">
+        COMPUTER SCIENCE STUDENT <span aria-hidden="true">|</span> BSCS <span aria-hidden="true">|</span>
+      </p>
+
+      <a href="#connect" class="hero__scroll-cue fade-in" style="--delay: .35s" aria-label="Scroll to Connect with Me section">
+        <span>Connect with me</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14M19 12l-7 7-7-7"/>
+        </svg>
+      </a>
+    </section>
+
+    <!-- ============ CONNECT ============ -->
+    <section id="connect" class="connect" aria-labelledby="connect-heading">
+      <h2 id="connect-heading" class="connect__title fade-in-on-scroll">Connect with Me</h2>
+      <p class="connect__subtitle fade-in-on-scroll">Reach out through any of the channels below</p>
+
+      <div class="card-grid">
+
+        <!-- Facebook -->
+        <a
+          class="card fade-in-on-scroll"
+          href="https://www.facebook.com/share/14n5Ujn24dr/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit my Facebook profile (opens in a new tab)"
+        >
+          <span class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </span>
+          <span class="card__text">
+            <span class="card__label">Facebook</span>
+            <span class="card__value">@yourusername</span>
+          </span>
+        </a>
+
+        <!-- Instagram -->
+        <a
+          class="card fade-in-on-scroll"
+          href="https://www.instagram.com/_chslx?igsh=ZGFycTJmc3lxbXRt"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit my Instagram profile (opens in a new tab)"
+        >
+          <span class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="4.2"/>
+              <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="card__text">
+            <span class="card__label">Instagram</span>
+            <span class="card__value">@yourusername</span>
+          </span>
+        </a>
+
+        <!-- TikTok -->
+        <a
+          class="card fade-in-on-scroll"
+          href="https://www.tiktok.com/@cantbe.charles?_r=1&_t=ZS-97kivzbc2wj"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit my TikTok profile (opens in a new tab)"
+        >
+          <span class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 3v10.5a3.5 3.5 0 1 1-3-3.46"/>
+              <path d="M16 3a5.5 5.5 0 0 0 5 5.4"/>
+            </svg>
+          </span>
+          <span class="card__text">
+            <span class="card__label">TikTok</span>
+            <span class="card__value">@yourusername</span>
+          </span>
+        </a>
+
+        <!-- Email -->
+        <a
+          class="card fade-in-on-scroll"
+          href="balberancharles28@gmail.com"
+          aria-label="Send me an email"
+        >
+          <span class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2.5"/>
+              <path d="m3 6.5 8 6.2a1.6 1.6 0 0 0 2 0L21 6.5"/>
+            </svg>
+          </span>
+          <span class="card__text">
+            <span class="card__label">Email</span>
+            <span class="card__value">your@email.com</span>
+          </span>
+        </a>
+
+        <!-- Phone -->
+        <a
+          class="card fade-in-on-scroll"
+          href="tel:+639753667098"
+          aria-label="Call my phone number"
+        >
+          <span class="card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6.6 10.8a15.9 15.9 0 0 0 6.6 6.6l2.2-2.2a1.6 1.6 0 0 1 1.6-.4c1.3.4 2.7.6 4.1.6a1.6 1.6 0 0 1 1.6 1.6V21a1.6 1.6 0 0 1-1.6 1.6C10.6 22.6 1.4 13.4 1.4 2.6A1.6 1.6 0 0 1 3 1h3.6a1.6 1.6 0 0 1 1.6 1.6c0 1.4.2 2.8.6 4.1a1.6 1.6 0 0 1-.4 1.6z"/>
+            </svg>
+          </span>
+          <span class="card__text">
+            <span class="card__label">Phone</span>
+            <span class="card__value">+63 9753667098</span>
+          </span>
+        </a>
+
+      </div>
+    </section>
+
+    <footer class="footer fade-in-on-scroll">
+      <p>&copy; <span id="year"></span> Charles. All rights reserved.</p>
+    </footer>
+
+  </main>
+
+  <!-- Back to top button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
