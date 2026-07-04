@@ -1,0 +1,399 @@
+/* =========================================================
+   PORTFOLIO LANDING PAGE — STYLESHEET
+   Palette : White #FFFFFF · Black #000000 · Gray #F5F5F5 / #E5E5E5
+   Fonts   : Poppins (display) · Inter (body/UI)
+   ========================================================= */
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+  /* Light theme (default) */
+  --color-bg: #FFFFFF;
+  --color-surface: #F5F5F5;
+  --color-border: #E5E5E5;
+  --color-text: #000000;
+  --color-text-muted: #5C5C5C;
+  --color-accent: #000000;
+  --color-accent-contrast: #FFFFFF;
+  --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --shadow-lift: 0 16px 32px rgba(0, 0, 0, 0.10);
+  --dot-color: 0, 0, 0;
+
+  --font-display: 'Poppins', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: 0.2s var(--ease);
+  --transition-med: 0.4s var(--ease);
+  --transition-slow: 0.7s var(--ease);
+
+  --max-width: 960px;
+}
+
+/* Dark mode — same black & white palette, roles inverted */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #000000;
+    --color-surface: #141414;
+    --color-border: #262626;
+    --color-text: #FFFFFF;
+    --color-text-muted: #A3A3A3;
+    --color-accent: #FFFFFF;
+    --color-accent-contrast: #000000;
+    --shadow-soft: 0 2px 10px rgba(255, 255, 255, 0.04);
+    --shadow-lift: 0 16px 32px rgba(255, 255, 255, 0.08);
+    --dot-color: 255, 255, 255;
+  }
+}
+
+/* ---------- 2. Reset ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background var(--transition-med), color var(--transition-med);
+}
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Respect reduced-motion preference everywhere */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Visible keyboard focus state (accessibility) */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+/* Skip link — hidden until focused */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 1rem;
+  background: var(--color-text);
+  color: var(--color-bg);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  z-index: 100;
+}
+.skip-link:focus {
+  left: 1rem;
+}
+
+/* ---------- 3. Ambient background canvas ---------- */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- 4. Hero ---------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+}
+
+.hero__eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+.hero__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-bottom: 1.1rem;
+}
+
+.hero__subtitle {
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  max-width: 40rem;
+  margin-bottom: 3rem;
+}
+
+.hero__subtitle span {
+  color: var(--color-border);
+  padding: 0 0.3em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero__subtitle span { color: #333333; }
+}
+
+.hero__scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 0.25rem;
+  position: relative;
+  color: var(--color-text);
+}
+
+/* Animated underline-on-hover, used across the page */
+.hero__scroll-cue::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1.5px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-fast);
+}
+.hero__scroll-cue:hover::after,
+.hero__scroll-cue:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.hero__scroll-cue svg {
+  animation: bob 2.2s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+/* ---------- 5. Connect section ---------- */
+.connect {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 5rem 1.5rem 6rem;
+  text-align: center;
+}
+
+.connect__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  margin-bottom: 0.6rem;
+}
+
+.connect__subtitle {
+  color: var(--color-text-muted);
+  margin-bottom: 3rem;
+  font-size: 1rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.3rem 1.4rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  text-align: left;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lift);
+  border-color: var(--color-text);
+}
+
+.card:active {
+  transform: translateY(-2px);
+}
+
+.card__icon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  transition: transform var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+}
+
+.card__icon svg { width: 22px; height: 22px; }
+
+.card:hover .card__icon {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  transform: scale(1.08) rotate(-6deg);
+}
+
+.card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.card__label {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.card__value {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- 6. Footer ---------- */
+.footer {
+  text-align: center;
+  padding: 2rem 1.5rem 3rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* ---------- 7. Back to top button ---------- */
+.back-to-top {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lift);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+  z-index: 50;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px);
+}
+
+/* ---------- 8. Fade-in animations ---------- */
+.fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.8s var(--ease) forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+.fade-in-on-scroll {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+.fade-in-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- 9. Responsive breakpoints ---------- */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .hero { min-height: 92vh; }
+  .card-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .hero__name { font-size: clamp(2rem, 10vw, 2.8rem); }
+  .card-grid { grid-template-columns: 1fr; }
+  .card { padding: 1.1rem 1.2rem; }
+  .back-to-top { right: 1rem; bottom: 1rem; width: 44px; height: 44px; }
+}
+
+/* Very small phones */
+@media (max-width: 340px) {
+  .hero__subtitle { font-size: 0.85rem; }
+}
+
+/* Larger desktops — keep things comfortably centered, not stretched */
+@media (min-width: 1440px) {
+  .connect { max-width: 1080px; }
+}
